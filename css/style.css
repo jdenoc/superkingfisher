@@ -1,0 +1,12 @@
+*{
+    margin:0 0;
+    padding:0 0;
+}
+#box{
+    width:100px;
+    height:100px;
+    background-color:red;
+    position: absolute;
+    left:0;
+    top:0;
+}
