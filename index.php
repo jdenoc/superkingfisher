@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Test</title>
+    <title>Super King Fisher</title>
     <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/base/jquery-ui.css' type='text/css' media='screen' />
     <link rel='stylesheet' href='css/style.css' type='text/css' media='screen' />
     <script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -12,6 +12,8 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div id="box"></div>
+<div id="board">
+    <div id="box"></div>
+</div>
 </body>
 </html>

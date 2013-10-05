@@ -1,19 +1,20 @@
-// Position Variables
-var x = 0;
-var y = 0;
+var player1 = [];
+player1['start_x'] = null;
+player1['start_x'] = null;
+player1['y_min'] = null;
+player1['y_max'] = null;
+player1['x_min'] = null;
+player1['x_max'] = null;
 
-// Speed - Velocity
-var vx = 0;
-var vy = 0;
+var yPixelSize = 20;
+var xPixelSize = 11;
+var degreeDistance = 30;
 
-// Acceleration
-var ax = 0;
-var ay = 0;
+var hookHeight = 100;
+var hookWidth = 100;
 
-var gameHeight = 750;
-var gameWidth = 750;
-
-var vMultiplier = 0.01;
+var gameWidth = 1200;
+var gameHeight = 660;
 
 $(function() {
     setTimeout(function () {
@@ -24,14 +25,53 @@ $(function() {
 function moveBox(){
     $.ajax({
         type: 'GET',
-        url: './coordinates.txt?&x='+nocache(),
+        url: './coordinates/player1.txt?&x='+nocache(),
         cache: false,
         beforeSend:function(){ },
         success:function(data){
             var coordinates = data.split(",");
+            var y = parseInt(coordinates[0]);
+            var x = parseInt(coordinates[1]);
 
+            if (player1['start_x'] == null){
+                player1['start_x'] = x;
+                player1['start_y'] = y;
 
-            $("#box").animate({top: y + "px", left: x + "px"}, 10, "swing");
+                player1['y_min'] = y-degreeDistance;
+                player1['y_max'] = y+degreeDistance;
+                player1['x_min'] = x-degreeDistance;
+                player1['x_max'] = x+degreeDistance;
+            }
+            else{
+
+                var xPos = null;
+                var yPos = null;
+
+                // outside of pre-determined bounds
+                if (x - player1['x_min'] <= player1['x_min']){
+                    xPos = 0;
+                }
+                else if (x - player1['x_min'] >= player1['x_max']){
+                    xPos = gameWidth-hookWidth;
+                }
+                if (y - player1['y_min'] <= player1['y_min']){
+                    yPos = 0;
+                }
+                else if (y - player1['y_min'] >= player1['y_max']){
+                    yPos = gameHeight-hookHeight;
+                }
+
+                //inside bounds
+                if (xPos == null){
+                    xPos = (x - player1['x_min']) * xPixelSize;
+                }
+
+                if (yPos == null){
+                    yPos = (y - player1['y_min']) * yPixelSize;
+                }
+
+                $("#box").animate({top: yPos + "px", left: xPos + "px"}, 10, "swing");
+            }
             setTimeout(function () {
                 moveBox();
             }, 10);
