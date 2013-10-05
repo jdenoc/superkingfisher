@@ -48,16 +48,16 @@ function moveBox(){
                 var yPos = null;
 
                 // outside of pre-determined bounds
-                if (x <= player1['x_min']){
+                if (x - player1['x_min'] <= player1['x_min']){
                     xPos = 0;
                 }
-                else if (x >= player1['x_max']){
+                else if (x - player1['x_min'] >= player1['x_max']){
                     xPos = gameWidth-hookWidth;
                 }
-                if (y <= player1['y_min']){
+                if (y - player1['y_min'] <= player1['y_min']){
                     yPos = 0;
                 }
-                else if (y >= player1['y_max']){
+                else if (y - player1['y_min'] >= player1['y_max']){
                     yPos = gameHeight-hookHeight;
                 }
 
