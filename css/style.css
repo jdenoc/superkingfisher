@@ -116,3 +116,19 @@ body{
 	color:#fff;
 	font-size:24px;
 }
+#rod1{
+	background-image:url(../images/rod1.png);
+	background-position:top center;
+	width:100%;
+	height:100%;
+	margin:0 auto;
+	background-repeat:repeat-y;
+}
+#rod2{
+	background-image:url(../images/rod2.png);
+	background-position:top center;
+	width:100%;
+	height:100%;
+	margin:0 auto;
+	background-repeat:repeat-y;
+}
