@@ -19,7 +19,7 @@ body{
 #wrapper{
     width:1200px;
     height:660px;
-    margin:0px auto;
+    margin:0 auto;
 	background-color:#63c3ab;
 	background-image:url(../images/bg.png);
 	background-repeat:repeat-x;
@@ -41,7 +41,7 @@ body{
     height:660px;
     width:42px;
     position: absolute;
-    left:0px;
+    left:0;
     z-index: 3;
     background-image: url('../images/hook1.png');
     background-position: bottom;
@@ -132,3 +132,15 @@ body{
 	margin:0 auto;
 	background-repeat:repeat-y;
 }
+
+/* Player Select Styles */
+label{
+    display: block;
+    padding: 10px;
+    margin: 25px auto;
+    background-color: #63c3ab;
+    text-align: center;
+    font-family: 'press_start_2pregular', helvetica, arial, sans-serif;
+}
+label:first-child{ color: #F0004A; }
+label:last-child{ color: #0000EF; }
