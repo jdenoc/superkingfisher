@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PLayer 2</title>
     <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/base/jquery-ui.css' type='text/css' media='screen' />
     <link rel='stylesheet' href='css/style.css' type='text/css' media='screen' />
@@ -12,6 +13,6 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div id="rod2"></div>
+<div id="phone_rod2"></div>
 </body>
 </html>
