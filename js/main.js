@@ -7,6 +7,7 @@ player1['x_min'] = null;
 player1['x_max'] = null;
 player1['x'] = 0;
 player1['y'] = null;
+player1['score'] = 0;
 
 var player2 = [];
 player2['start_x'] = null;
@@ -17,6 +18,10 @@ player2['x_min'] = null;
 player2['x_max'] = null;
 player2['x'] = 0;
 player2['y'] = null;
+player2['score'] = 0;
+
+var player1Score = [];
+var player2Score = [];
 
 var yPixelSize = 20;
 var xPixelSize = 11;
@@ -28,6 +33,7 @@ var hookWidth = 100;
 var gameWidth = 1200;
 var gameHeight = 660;
 var fishHeight = 72;
+var fishWidth = 100;
 var fishCount = 0;
 var yellowFishSpeed = 2000;
 var blueFishSpeed = 3000;
@@ -35,6 +41,9 @@ var redFishSpeed = 4000;
 var deadFishSpeed = 3000;
 var bootSpeed = 3000;
 var gameTime = 60;
+var rodVariance = 20;
+var catchVariance = 50;
+var rodWidth = 42;
 
 $(function() {
     setTimeout(function () {
@@ -68,6 +77,55 @@ function decrementTime(){
     }
 }
 
+function checkScore(i){
+    //console.log(i);
+    var tempFish = "#fish_"+i;
+    if (typeof $(tempFish).position() != 'undefined'){
+        if (caught($(tempFish), $("#rod1")) && player1Score.indexOf(i) == -1){
+            player1Score.push(i);
+            $(".score_left").html(player1Score.length);
+            setTimeout(function () {
+                $(tempFish).hide();
+            }, 100);
+        }
+    }
+    else{
+        //catch error
+        setTimeout(function () {
+            checkScore(i);
+        }, 50);
+    }
+
+    if ($(tempFish).position().left+fishWidth < gameWidth){
+        setTimeout(function () {
+            checkScore(i);
+        }, 50);
+    }
+    else{
+        $(tempFish).hide();
+    }
+}
+
+function caught(fish, rod){
+    var fishPos = fish.position();
+    var fishLeft = fishPos.left;
+    var fishRight = fishPos.left + fishWidth;
+    var fishBottom = fishPos.top + fishHeight;
+
+    var rodPos = rod.position();
+    var rodLeft = rodPos.left;
+    var rodRight = rodPos.left + rodWidth;
+
+    //check if fish is within left and right bounds of rod
+    if (rodLeft >= rodLeft - rodVariance && rodRight <= rodRight + rodVariance){
+        //check if fish is within top area of rod
+        if ((fishBottom >= rodLeft - catchVariance) && (fishRight <= rodLeft + catchVariance)){
+            return true;
+        }
+        else return false;
+    }
+    else return false;
+}
 
 function startFish(){
     if (gameTime>0){
@@ -77,30 +135,35 @@ function startFish(){
             var tempDiv = "<div class='fish' id='fish_" + fishCount + "'><img src='images/yellow_fish.gif'/></div>";
             $("#board").append(tempDiv);
             $("#fish_" + fishCount).css({'top':startTop});
+            checkScore(fishCount);
             $("#fish_" + fishCount).animate({left:gameWidth}, yellowFishSpeed, "swing");
         }
         else if (fishType == 1){
             var tempDiv = "<div class='fish' id='fish_" + fishCount + "'><img src='images/blue_fish.gif'/></div>";
             $("#board").append(tempDiv);
             $("#fish_" + fishCount).css({'top':startTop});
+            checkScore(fishCount);
             $("#fish_" + fishCount).animate({left:gameWidth}, blueFishSpeed, "swing");
         }
         else if (fishType == 2){
             var tempDiv = "<div class='fish' id='fish_" + fishCount + "'><img src='images/red_fish.gif'/></div>";
             $("#board").append(tempDiv);
             $("#fish_" + fishCount).css({'top':startTop});
+            checkScore(fishCount);
             $("#fish_" + fishCount).animate({left:gameWidth}, redFishSpeed, "swing");
         }
         else if (fishType == 3){
             var tempDiv = "<div class='fish' id='fish_" + fishCount + "'><img src='images/dead_fish.png'/></div>";
             $("#board").append(tempDiv);
             $("#fish_" + fishCount).css({'top':startTop});
+            checkScore(fishCount);
             $("#fish_" + fishCount).animate({left:gameWidth}, deadFishSpeed, "swing");
         }
         else if (fishType == 4){
             var tempDiv = "<div class='fish' id='fish_" + fishCount + "'><img src='images/boot.png'/></div>";
             $("#board").append(tempDiv);
             $("#fish_" + fishCount).css({'top':startTop});
+            checkScore(fishCount);
             $("#fish_" + fishCount).animate({left:gameWidth}, bootSpeed, "swing");
         }
 
