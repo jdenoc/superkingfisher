@@ -13,16 +13,22 @@
 </head>
 <body>
 <div id="wrapper">
-    <div id="time"></div>
-    <div id="background">
-        <div id="abovewater">
+    <div id="abovewater">
+            <div class="logo"></div>
             <div id="player1score">
+            	<p class="score_left">
+                0000000
+                </p>
 
             </div>
             <div id="player2score">
-
+				<p class="score_right">
+                0000000
+                </p>
             </div>
         </div>
+        <div id="time">60</div>
+    <div id="background">
     </div>
     <div id="board">
         <div id="rod1"></div>
