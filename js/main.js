@@ -1,11 +1,11 @@
 var player1 = [];
 player1['start_x'] = null;
-player1['start_y'] = 0;
+player1['start_y'] = null;
 player1['y_min'] = null;
 player1['y_max'] = null;
 player1['x_min'] = null;
 player1['x_max'] = null;
-player1['x'] = null;
+player1['x'] = 0;
 player1['y'] = null;
 
 var yPixelSize = 20;
@@ -123,38 +123,40 @@ function moveBox(){
                 var yPos = null;
 
                 // outside of pre-determined bounds
-                if (x - player1['x_min'] <= player1['x_min']){
+                if(x <= player1['x_min']){
                     xPos = 0;
-                }
-                else if (x - player1['x_min'] >= player1['x_max']){
+                } else if (x >= player1['x_max']){
                     xPos = gameWidth-hookWidth;
                 }
-                if (y - player1['y_min'] <= player1['y_min']){
+                if(y <= player1['y_min']){
+                    yPos = gameHeight-hookHeight;
+                } else if (y >= player1['y_max']){
                     yPos = 0;
                 }
-                else if (y - player1['y_min'] >= player1['y_max']){
-                    yPos = gameHeight-hookHeight;
-                }
 
-                //inside bounds
+//                inside bounds
                 if (xPos == null){
-                    xPos = (x - player1['x_min']) * xPixelSize;
+                    if(x > player1['start_x']){
+                        xPos = ( (x - player1['start_x']) * xPixelSize ) + gameWidth/2;
+                     } else {
+                        xPos = gameWidth/2 - ( (player1['start_x'] - x) * xPixelSize );
+                    }
                 }
 
                 if (yPos == null){
-                    yPos = (y - player1['y_min']) * yPixelSize;
+                    if(y > player1['start_y']){
+                        yPos = ( (y - player1['start_y']) * yPixelSize ) + gameWidth/2;
+                    } else {
+                        yPos = gameHeight/2 - ( (player1['start_y'] - y) * yPixelSize );
+                    }
                 }
 
                 //check how much things have actually changed
-                if (true){
-                    player1['x'] = xPos;
-                    player1['y'] = yPos;
-                    $("#box").animate({top: yPos + "px", left: xPos + "px"}, 25, "swing");
-                }
+                $("#box").animate({top: yPos + "px", left: xPos + "px"}, 25, "swing");
             }
             setTimeout(function () {
                 moveBox();
-            }, 25);
+            }, 50);
         },
         error:function(){ }
     });
