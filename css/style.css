@@ -2,11 +2,41 @@
     margin:0 0;
     padding:0 0;
 }
-#board{
+#wrapper{
     width:1200px;
     height:660px;
     margin:0px auto;
-    background-color:#ccc;
+}
+#board{
+    width:1200px;
+    height:660px;
+    z-index: 2;
+    position:absolute;
+}
+#background{
+    width:1200px;
+    height:660px;
+    background-color:#00CED1;
+    z-index: 1;
+    position:absolute;
+}
+#rod1{
+    height:660px;
+    width:42px;
+    position: absolute;
+    left:0px;
+    z-index: 3;
+    background-image: url('../images/hook1.png');
+    background-position: bottom;
+}
+#rod2{
+    height:660px;
+    width:42px;
+    position: absolute;
+    left:100px;
+    z-index: 3;
+    background-image: url('../images/hook2.png');
+    background-position: bottom;
 }
 #box{
     width:100px;
@@ -15,4 +45,30 @@
     position: relative;
     left:100px;
     top:100px;
+    z-index: 3;
+}
+#player1score{
+    width:300px;
+    height:125px;
+    background-color: #ddd;
+    float:left;
+}
+#player2score{
+    width:300px;
+    height:125px;
+    background-color: #ddd;
+    float:right;
+}
+#abovewater{
+    width:1200px;
+    height:125px;
+}
+.fish{
+    position:absolute;
+}
+#time{
+    position:absolute;
+    left:575px;
+    top:30px;
+    z-index: 2;
 }

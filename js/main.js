@@ -17,12 +17,85 @@ var hookWidth = 100;
 
 var gameWidth = 1200;
 var gameHeight = 660;
+var fishHeight = 72;
+var fishCount = 0;
+var yellowFishSpeed = 2000;
+var blueFishSpeed = 3000;
+var redFishSpeed = 4000;
+var deadFishSpeed = 3000;
+var bootSpeed = 3000;
+var gameTime = 60;
 
 $(function() {
     setTimeout(function () {
         moveBox();
     }, 25);
+
+    setTimeout(function () {
+        startFish();
+    }, 100);
+
+    setTimeout(function () {
+        decrementTime();
+    }, 1000);
 });
+
+function decrementTime(){
+    if (gameTime>0){
+        gameTime--;
+        $("#time").html("00:"+pad(gameTime,2));
+        //recur
+        setTimeout(function () {
+            decrementTime();
+        }, 1000);
+    }
+    else{
+        active = false;
+    }
+}
+
+function startFish(){
+    if (gameTime>0){
+        var startTop = Math.floor(Math.random() * (gameHeight-fishHeight));
+        var fishType = Math.floor(Math.random() * 5);
+        if (fishType == 0){
+            var tempDiv = "<div class='fish' id='fish_" + fishCount + "'><img src='images/yellow_fish.gif'/></div>";
+            $("#board").append(tempDiv);
+            $("#fish_" + fishCount).css({'top':startTop});
+            $("#fish_" + fishCount).animate({left:gameWidth}, yellowFishSpeed, "swing");
+        }
+        else if (fishType == 1){
+            var tempDiv = "<div class='fish' id='fish_" + fishCount + "'><img src='images/blue_fish.gif'/></div>";
+            $("#board").append(tempDiv);
+            $("#fish_" + fishCount).css({'top':startTop});
+            $("#fish_" + fishCount).animate({left:gameWidth}, blueFishSpeed, "swing");
+        }
+        else if (fishType == 2){
+            var tempDiv = "<div class='fish' id='fish_" + fishCount + "'><img src='images/red_fish.gif'/></div>";
+            $("#board").append(tempDiv);
+            $("#fish_" + fishCount).css({'top':startTop});
+            $("#fish_" + fishCount).animate({left:gameWidth}, redFishSpeed, "swing");
+        }
+        else if (fishType == 3){
+            var tempDiv = "<div class='fish' id='fish_" + fishCount + "'><img src='images/dead_fish.png'/></div>";
+            $("#board").append(tempDiv);
+            $("#fish_" + fishCount).css({'top':startTop});
+            $("#fish_" + fishCount).animate({left:gameWidth}, deadFishSpeed, "swing");
+        }
+        else if (fishType == 4){
+            var tempDiv = "<div class='fish' id='fish_" + fishCount + "'><img src='images/boot.png'/></div>";
+            $("#board").append(tempDiv);
+            $("#fish_" + fishCount).css({'top':startTop});
+            $("#fish_" + fishCount).animate({left:gameWidth}, bootSpeed, "swing");
+        }
+
+        fishCount++;
+
+        setTimeout(function () {
+            startFish();
+        }, 500);
+    }
+}
 
 function moveBox(){
     $.ajax({
@@ -95,4 +168,10 @@ function nocache(){
         text += possible.charAt(Math.floor(Math.random() * possible.length));
 
     return text;
+}
+
+function pad(num, size) {
+    var s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
 }

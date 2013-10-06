@@ -12,8 +12,22 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div id="board">
-    <div id="box"></div>
+<div id="wrapper">
+    <div id="time"></div>
+    <div id="background">
+        <div id="abovewater">
+            <div id="player1score">
+
+            </div>
+            <div id="player2score">
+
+            </div>
+        </div>
+    </div>
+    <div id="board">
+        <div id="rod1"></div>
+        <div id="rod2"></div>
+    </div>
 </div>
 </body>
 </html>
