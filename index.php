@@ -2,26 +2,22 @@
 require_once('Mobile_Detect.php');
 $detect = new Mobile_Detect();
 if($detect->isMobile()){ ?>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super King Fisher</title>
-    <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/base/jquery-ui.css' type='text/css' media='screen' />
-    <link rel='stylesheet' href='css/style.css' type='text/css' media='screen' />
-    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-    <script src="js/main.js" type="text/javascript"></script>
+    <title>Super King Fisher | Player Select</title>
+    <link href='css/style.css' rel='stylesheet' type='text/css' media='screen' />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
-
-<label>Player 1<input type="checkbox" onclick="window.location='phone1.php';exit();"></label><br/>
-<label>Player 2<input type="checkbox" onclick="window.location='phone2.php';exit();"></label>
+    <label>Player 1&nbsp;<input type="radio" onclick="window.location='phone1.php';exit();"></label>
+    <label>Player 2&nbsp;<input type="radio" onclick="window.location='phone2.php';exit();"></label>
 </body>
 </html>
 <?php exit; } ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -31,12 +27,12 @@ if($detect->isMobile()){ ?>
     <link rel='stylesheet' href='css/style.css' type='text/css' media='screen' />
     <script src="http://www.google.com/jsapi" type="text/javascript"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<audio preload="auto" tabindex="0" autoplay="true" loop="true"> <source src="mario.mp3" type="audio/mpeg" /> </audio>
+<audio preload="auto" autoplay="true"> <source src="mario.mp3" type="audio/mpeg" /> </audio>
 <div id="wrapper">
     <div id="abovewater">
             <div class="logo"></div>
