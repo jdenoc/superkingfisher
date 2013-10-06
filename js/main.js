@@ -1,10 +1,12 @@
 var player1 = [];
 player1['start_x'] = null;
-player1['start_x'] = null;
+player1['start_y'] = 0;
 player1['y_min'] = null;
 player1['y_max'] = null;
 player1['x_min'] = null;
 player1['x_max'] = null;
+player1['x'] = null;
+player1['y'] = null;
 
 var yPixelSize = 20;
 var xPixelSize = 11;
@@ -19,7 +21,7 @@ var gameHeight = 660;
 $(function() {
     setTimeout(function () {
         moveBox();
-    }, 10);
+    }, 25);
 });
 
 function moveBox(){
@@ -35,7 +37,7 @@ function moveBox(){
 
             if (player1['start_x'] == null){
                 player1['start_x'] = x;
-                player1['start_y'] = y;
+                player1['start_y'] = 0;
 
                 player1['y_min'] = y-degreeDistance;
                 player1['y_max'] = y+degreeDistance;
@@ -67,14 +69,24 @@ function moveBox(){
                 }
 
                 if (yPos == null){
-                    yPos = (y - player1['y_min']) * yPixelSize;
+                    if (y > 0){
+                        yPos = (y - player1['y_min']) * yPixelSize;
+                    }
+                    else{
+                        yPos = (player1['y_min'] - y) * yPixelSize;
+                    }
                 }
 
-                $("#box").animate({top: yPos + "px", left: xPos + "px"}, 10, "swing");
+                //check how much things have actually changed
+                if (true){
+                    player1['x'] = xPos;
+                    player1['y'] = yPos;
+                    $("#box").animate({top: yPos + "px", left: xPos + "px"}, 25, "swing");
+                }
             }
             setTimeout(function () {
                 moveBox();
-            }, 10);
+            }, 25);
         },
         error:function(){ }
     });
