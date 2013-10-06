@@ -54,6 +54,7 @@ function decrementTime(){
     }
 }
 
+
 function startFish(){
     if (gameTime>0){
         var startTop = Math.floor(Math.random() * (gameHeight-fishHeight));
