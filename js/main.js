@@ -18,6 +18,8 @@ player2['x_max'] = null;
 player2['x'] = 0;
 player2['y'] = null;
 
+var rodSize = 640;
+
 var yPixelSize = 20;
 var xPixelSize = 11;
 var degreeDistance = 30;
@@ -71,7 +73,7 @@ function decrementTime(){
 
 function startFish(){
     if (gameTime>0){
-        var startTop = Math.floor(Math.random() * (gameHeight-fishHeight));
+        var startTop = Math.floor(Math.random() * (500-fishHeight))+158;
         var fishType = Math.floor(Math.random() * 5);
         if (fishType == 0){
             var tempDiv = "<div class='fish' id='fish_" + fishCount + "'><img src='images/yellow_fish.gif'/></div>";
@@ -167,7 +169,7 @@ function moveRod1(){
                 }
 
                 //check how much things have actually changed
-                $("#rod1").animate({top: yPos + "px", left: xPos + "px"}, 25, "swing");
+                $("#rod1").animate({top: (yPos-rodSize) + "px", left: xPos + "px"}, 25, "swing");
             }
             setTimeout(function () {
                 moveRod1();
@@ -232,7 +234,7 @@ function moveRod2(){
                 }
 
                 //check how much things have actually changed
-                $("#rod2").animate({top: yPos + "px", left: xPos + "px"}, 25, "swing");
+                $("#rod2").animate({top: (yPos-rodSize) + "px", left: xPos + "px"}, 25, "swing");
             }
             setTimeout(function () {
                 moveRod2();
