@@ -85,7 +85,7 @@ function checkScore(i){
     if (typeof $(tempFish).position() != 'undefined'){
         if (caught($(tempFish), $("#rod1")) && player1Score.indexOf(i) == -1){
             player1Score.push(i);
-            $(".score_left").html(player1Score.length);
+            $(".score_left").html(pad(player1Score.length,7));
             setTimeout(function () {
                 $(tempFish).hide();
             }, 100);
