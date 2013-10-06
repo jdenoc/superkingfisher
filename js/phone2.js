@@ -25,7 +25,7 @@ window.ondeviceorientation = function(e) {
     $("#vals").html(tiltXAxis+"<br/>"+tiltZAxis);
     $.ajax({
         type: 'GET',
-        url: './move.php?x='+tiltXAxis+'&y='+tiltZAxis+'&player=1',
+        url: './move.php?x='+tiltXAxis+'&y='+tiltZAxis+'&player=2',
         cache: false,
         beforeSend:function(){ },
         success:function(data){
