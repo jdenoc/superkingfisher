@@ -69,12 +69,7 @@ function moveBox(){
                 }
 
                 if (yPos == null){
-                    if (y > 0){
-                        yPos = (y - player1['y_min']) * yPixelSize;
-                    }
-                    else{
-                        yPos = (player1['y_min'] - y) * yPixelSize;
-                    }
+                    yPos = (y - player1['y_min']) * yPixelSize;
                 }
 
                 //check how much things have actually changed
